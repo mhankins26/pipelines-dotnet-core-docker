@@ -20,6 +20,7 @@ stages:
     pool:
       vmImage: 'ubuntu-16.04'
     steps:
+    - script: docker build -t $(dockerID)/$(imageName) .
     - task: Docker@2
       displayName: Build an image
       inputs:
@@ -27,4 +28,3 @@ stages:
         dockerfile: '**/Dockerfile'
         tags: |
           $(tag)
-    - script: docker build -t $(dockerID)/$(imageName) .
